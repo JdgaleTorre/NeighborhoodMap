@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Neighborhood Map</title>
+</head>
+<style>
+    html,
+    body {
+        height: 100%;
+        width: 100%;
+        display: block;
+        position: absolute;
+        margin: 0;
+    }
+
+    #map {
+        display: block;
+        height: 100%;
+        position: inherit!important;
+        width: 100%;
+    }
+
+    .content {
+        height: 100%;
+        width: 80%;
+        display: inline-flex;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .barra {
+        height: 100%;
+        width: 20%;
+        /* display: inline-flex; */
+        float: left;
+        background-color: indigo;
+        color: white;
+    }
+
+    .title {
+        text-align: center;
+        width: 100%;
+        margin-bottom: 20px;
+        /* display: block!important; */
+    }
+</style>
+
+<body>
+
+    <div class="barra">
+        <div class="title">
+            <h1>Location</h1>
+        </div>
+
+        <div class="searchbar">
+            <input data-bind="value: place"  placeholder="Search a Place..."/>
+        </div>
+
+        <div class="results">
+            <p data-bind = "text: place"></p>
+        </div>
+
+    </div>
+    <div class="content">
+        <div id="map"></div>
+
+    </div>
+    <!-- <div class="map">
+        <span>Aqui</span>
+    </div> -->
+
+
+
+    <script src="./JS/knockout.js"></script>
+    <script>
+
+        function SearchBarModel() {
+            this.place = ko.observable();
+        }
+
+        ko.applyBindings(new SearchBarModel());
+
+    </script>
+
+
+    <script>
+        function initMap() {
+            // Create a map object and specify the DOM element for display.
+            var map = new google.maps.Map(document.getElementById('map'), {
+                center: { lat: 15.5444332, lng: -88.0167403 },
+                zoom: 14
+            });
+        }
+
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBvZqp5_fzCjFHRwJSSNXgw7NlF5jMaA-k&callback=initMap" async
+        defer></script>
+</body>
+
+</html>
