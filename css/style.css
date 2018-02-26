@@ -1,0 +1,121 @@
+html,
+body {
+    height: 100%;
+    width: 100%;
+    display: block;
+    position: absolute;
+    margin: 0;
+}
+
+#map {
+    display: block;
+    height: 100%;
+    position: inherit !important;
+    width: 100%;
+    top: 50px;
+}
+
+.all {
+    width: 100%;
+    height: 100%;
+}
+
+.content {
+    height: 100%;
+    /* width: 100%; */
+    /* left: 200px; */
+    /* display: inline; */
+    overflow: hidden;
+    position: relative;
+    width: -webkit-calc(100% - 200px);
+    width: -moz-calc(100% - 200px);
+    width: calc(100% - 200px);
+}
+
+.barra {
+    height: 100%;
+    width: 200px;
+    /* display: inline-flex; */
+    float: left;
+    background-color: indigo;
+    color: white;
+    /* display: inline; */
+}
+
+.title {
+    text-align: center;
+    width: 100%;
+    margin-bottom: 20px;
+    /* display: block!important; */
+}
+
+.place {
+    margin: 15px;
+    cursor: pointer;
+}
+
+.infotitle {
+    text-align: left;
+    width: 100%;
+    font-size: 30px;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.address {
+    margin: 5px;
+}
+
+.category {
+    margin: 5px;
+}
+
+.ratings {
+    position: relative;
+    float: right;
+}
+
+.ratings .google {
+    display: inline-block;
+}
+
+.ratings .foursquare {
+    display: inline-block;
+}
+
+.top {
+    height: 10%;
+}
+
+.results {
+    height: 85%;
+    overflow-y: scroll;
+}
+
+.topBar {
+    background-color: indigo;
+    display: block;
+    width: 100%;
+    height: 50px;
+    position: absolute;
+    z-index: 1;
+    text-align: left;
+    color: white;
+}
+
+.menu {
+    display: flex;
+    position: relative;
+    /* float: left; */
+    top: 8px;
+    left: 10px;
+    font-size: x-large;
+}
+
+.barra.oculta {
+    display: none;
+}
+
+.content.oculta {
+    width: 100%;
+}

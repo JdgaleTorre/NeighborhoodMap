@@ -6,69 +6,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Neighborhood Map</title>
+    <link rel="stylesheet" href="./css/style.css">
 </head>
-<style>
-    html,
-    body {
-        height: 100%;
-        width: 100%;
-        display: block;
-        position: absolute;
-        margin: 0;
-    }
-
-    #map {
-        display: block;
-        height: 100%;
-        position: inherit!important;
-        width: 100%;
-    }
-
-    .content {
-        height: 100%;
-        width: 80%;
-        display: inline-flex;
-        overflow: hidden;
-        position: relative;
-    }
-
-    .barra {
-        height: 100%;
-        width: 20%;
-        /* display: inline-flex; */
-        float: left;
-        background-color: indigo;
-        color: white;
-    }
-
-    .title {
-        text-align: center;
-        width: 100%;
-        margin-bottom: 20px;
-        /* display: block!important; */
-    }
-</style>
 
 <body>
 
-    <div class="barra">
-        <div class="title">
-            <h1>Location</h1>
-        </div>
+    <div class="all">
+        <div class="barra oculta">
+            <div class="top">
+                <div class="title">
+                    <h1>Location</h1>
+                </div>
 
-        <div class="searchbar">
-            <input data-bind="value: place" placeholder="Search a Place..." />
-        </div>
+                <div class="searchbar">
+                    <input data-bind="value: place" placeholder="Search a Place..." />
+                </div>
+            </div>
+            <div class="results" data-bind="foreach: markers">
+                <!-- <p data-bind="text: place"></p> -->
 
-        <div class="results">
-            <p data-bind="text: place"></p>
-        </div>
+                <div class="place">
+                    <h4 data-bind="text:title, click: $parent.clickPlace"></h4>
+                </div>
 
+            </div>
+
+        </div>
+        <div class="content oculta">
+            <div class="topBar">
+                <div class="menu">
+                    <i class="fas fa-bars"></i>
+                </div>
+
+            </div>
+            <div id="map"></div>
+
+        </div>
     </div>
-    <div class="content">
-        <div id="map"></div>
 
-    </div>
     <!-- <div class="map">
         <span>Aqui</span>
     </div> -->
@@ -76,84 +51,11 @@
 
 
     <script src="./JS/knockout.js"></script>
-    <script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBvZqp5_fzCjFHRwJSSNXgw7NlF5jMaA-k&libraries=places" async defer></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 
-        function SearchBarModel() {
-            this.place = ko.observable();
-        }
-
-        ko.applyBindings(new SearchBarModel());
-
-    </script>
-
-
-
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBvZqp5_fzCjFHRwJSSNXgw7NlF5jMaA-k&libraries=places" async
-        defer></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-        crossorigin="anonymous"></script>
-
-    <script>
-
-        let map;
-        let service;
-        let markers = [];
-
-        $(function () {
-            $(window).on('load', function () {
-                let spsLocation = new google.maps.LatLng(15.5444332, -88.0167403);
-                // function initMap() {
-                // Create a map object and specify the DOM element for display.
-                map = new google.maps.Map(document.getElementById('map'), {
-                    center: spsLocation,
-                    zoom: 16
-                });
-
-                var request = {
-                    location: spsLocation,
-                    radius: '500',
-                    type: ['restaurant']
-                };
-
-                service = new google.maps.places.PlacesService(map);
-                service.nearbySearch(request, callback)
-
-                // }
-
-            });
-
-            function callback(results, status) {
-                if (status == google.maps.places.PlacesServiceStatus.OK) {
-                    console.log(results);
-                    for (const place of results) {
-                        console.log(place);
-                        createMarker(place);
-                    }
-                    console.log(markers);
-                    // for (var i = 0; i < results.length; i++) {
-                    //     var place = results[i];
-                    //     //createMarker(results[i]);
-                    // }
-                }
-            }
-
-            function createMarker(place) {
-                markers.push(new google.maps.Marker({
-                    position: place.geometry.location,
-                    title: place.name,
-                    // icon: {
-                    //     url: place.icon, // url
-                    //     scaledSize: new google.maps.Size(50, 50), // scaled size
-                    //     origin: new google.maps.Point(0, 0), // origin
-                    //     anchor: new google.maps.Point(0, 0) // anchor
-                    // },
-                    map: map,
-                    animation: google.maps.Animation.DROP
-                }));
-            }
-        });
-
-    </script>
+    <script src="./JS/app.js"></script>
 </body>
 
 </html>
