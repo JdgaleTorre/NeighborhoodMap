@@ -101,7 +101,7 @@ function SearchBarModel() {
                 infowindow.close();
             }
 
-            infowindow = this["infowindow"];
+            infowindow = this.infowindow;
             infowindow.open(map, this);
         });
         //Add the listener in the new Mark of the click to show the infoWindow if the user its on cellphone
@@ -110,7 +110,7 @@ function SearchBarModel() {
                 infowindow.close();
             }
 
-            infowindow = this["infowindow"];
+            infowindow = this.infowindow;
             infowindow.open(map, this);
         });
 
@@ -123,7 +123,7 @@ function SearchBarModel() {
             infowindow.close();
         }
 
-        infowindow = this["infowindow"];
+        infowindow = this.infowindow;
         infowindow.open(map, this);
     };
 
@@ -159,23 +159,17 @@ function SearchBarModel() {
                             `<div class="ratings">
                                     <div class="google">
                                         <i class="fab fa-google"></i> ${
-                                          marker.rating
-                                            ? marker.rating + "/5"
-                                            : "N/A"
-                                        }
+                                          marker.rating ? marker.rating + "/5" : "N/A"  }
                                     </div>
                                     <div class="foursquare">
                                         <i class="fab fa-foursquare"></i> ${
-                                          response.response.venue.rating
-                                            ? response.response.venue.rating +
-                                              "/10"
-                                            : "N/A"
+                                          response.response.venue.rating ? response.response.venue.rating + "/10" : "N/A"
                                         }
                                     </div>
                                 </div>`;
                     }
 
-                    marker["infowindow"] = new google.maps.InfoWindow({
+                    marker.infowindow = new google.maps.InfoWindow({
                         content: infoWindowHtml
                     });
                 });
@@ -193,7 +187,7 @@ function SearchBarModel() {
                 infoWindowHtml =
                     infoWindowHtml + '<div class="category"><span>Category:';
                 let first = true;
-                for (type of marker.types) {
+                for (const type of marker.types) {
                     if (!first) {
                         infoWindowHtml = infoWindowHtml + ",";
                     }
@@ -215,7 +209,7 @@ function SearchBarModel() {
     </div>`;
             }
 
-            marker["infowindow"] = new google.maps.InfoWindow({
+            marker.infowindow = new google.maps.InfoWindow({
                 content: infoWindowHtml
             });
         }
@@ -234,7 +228,7 @@ function SearchBarModel() {
         if (marker.types.length > 0) {
             infoWindowHtml = infoWindowHtml + '<div class="category"><span>Category:';
             let first = true;
-            for (type of marker.types) {
+            for (const type of marker.types) {
                 if (!first) {
                     infoWindowHtml = infoWindowHtml + ",";
                 }
@@ -256,7 +250,7 @@ function SearchBarModel() {
     </div>`;
         }
 
-        marker["infowindow"] = new google.maps.InfoWindow({
+        marker.infowindow = new google.maps.InfoWindow({
             content: infoWindowHtml
         });
     }
