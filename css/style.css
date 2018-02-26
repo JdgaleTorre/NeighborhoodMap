@@ -9,10 +9,12 @@ body {
 
 #map {
     display: block;
-    height: 100%;
     position: inherit !important;
     width: 100%;
     top: 50px;
+    height: -webkit-calc(100% - 50px);
+    height: -moz-calc(100% - 50px);
+    height: calc(100% - 50px);
 }
 
 .all {
@@ -62,6 +64,12 @@ body {
     margin-bottom: 5px;
 }
 
+@media (max-width: 670px) {
+    .infotitle {
+        font-size: 20px;
+    }
+}
+
 .address {
     margin: 5px;
 }
@@ -84,7 +92,16 @@ body {
 }
 
 .top {
-    height: 10%;
+    height: 100px;
+    z-index: 100;
+}
+
+.searchbar {
+    color: black;
+}
+
+.top h1 {
+    margin-top: 5px;
 }
 
 .results {
@@ -103,7 +120,7 @@ body {
     color: white;
 }
 
-.menu {
+#menu {
     display: flex;
     position: relative;
     /* float: left; */
