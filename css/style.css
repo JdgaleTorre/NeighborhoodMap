@@ -7,7 +7,7 @@ body {
     margin: 0;
 }
 
-#map {
+.map {
     display: block;
     position: inherit !important;
     width: 100%;
@@ -120,7 +120,7 @@ body {
     color: white;
 }
 
-#menu {
+.menu {
     display: flex;
     position: relative;
     /* float: left; */

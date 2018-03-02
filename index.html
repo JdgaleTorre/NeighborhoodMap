@@ -21,18 +21,19 @@
 <body>
 
     <div class="all">
-        <div class="barra">
+        <div class="barra" data-bind="css: {oculta : isHide}">
             <div class="top">
                 <div class="title">
                     <h1>Location</h1>
                 </div>
 
                 <div class="searchbar">
-                    <input data-bind="value: place" style="width: 60%;" placeholder="Search a Place..." />
-                    <button id="searchPlace" type="button" class="btn btn-default">Search</button>
+                    <input data-bind="value: place" style="width: 100%;
+                    line-height: 25px;" placeholder="Search a Place..." />
+                    <!-- <button id="searchPlace" type="button" class="btn btn-default">Search</button> -->
                 </div>
             </div>
-            <div class="results" data-bind="foreach: markers">
+            <div class="results" data-bind="foreach: searchPlaces">
                 <!-- <p data-bind="text: place"></p> -->
 
                 <div class="place">
@@ -42,14 +43,14 @@
             </div>
 
         </div>
-        <div class="content">
+        <div class="content" data-bind="css: {oculta : isHide}">
             <div class="topBar">
-                <div id="menu">
+                <div id="menu" class="menu" data-bind="click : $root.hidding">
                     <i class="fas fa-bars"></i>
                 </div>
 
             </div>
-            <div id="map"></div>
+            <div id="map" class="map"></div>
 
         </div>
     </div>
@@ -61,13 +62,14 @@
 
 
     <script src="./JS/knockout.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=YOURGOOGLEKEY&libraries=places" async defer></script>
+
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
     <script src="./JS/app.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBvZqp5_fzCjFHRwJSSNXgw7NlF5jMaA-k&callback=initMap&libraries=places" async defer onerror="alert('Error on load google Maps')"></script>
 </body>
 
 </html>
