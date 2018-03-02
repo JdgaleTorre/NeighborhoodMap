@@ -2,53 +2,10 @@ let map;
 let service;
 let infowindow;
 // const fourSquareClient = "FourSquareClientHERE";
-const fourSquareClient = "Z0OCDTY4RWIMYZ1RB4QCMK5BBMHN0XSQCQWVIL1TXAYLJZKT";
+const FOUR_SQUARE_CLIENT = "Z0OCDTY4RWIMYZ1RB4QCMK5BBMHN0XSQCQWVIL1TXAYLJZKT";
 // const fourSquareSecret = "FourSquareSecretHERE";
-const fourSquareSecret = "OVGP5RHRZK2WUT0FY2CQFRQRN1KVME1AUL4E5DVYGWNQTQSZ";
+const FOUR_SQUARE_SECRET = "OVGP5RHRZK2WUT0FY2CQFRQRN1KVME1AUL4E5DVYGWNQTQSZ";
 let neighborHoodLocation;
-
-const points = [{
-        animation: 2,
-        location: { lat: 15.5102221, lng: -88.0349713 },
-        rating: 4.4,
-        title: "Hotel Los Laureles",
-        types: ["cafe", "lodging", "food", "point_of_interest", "establishment"],
-        vicinity: "15 Avenida NO, San Pedro Sula"
-    },
-    {
-        animation: 2,
-        location: { lat: 15.521877, lng: -88.02452340000002 },
-        rating: 4,
-        title: "The Coffee Cup",
-        types: ["cafe", "food", "point_of_interest", "establishment"],
-        vicinity: "San Pedro Sula"
-    },
-    {
-        animation: 2,
-        location: { lat: 15.5454099, lng: -88.01348889999997 },
-        rating: 4.5,
-        title: "Kaahwe Café",
-        types: ["cafe", "store", "food", "point_of_interest", "establishment"],
-        vicinity: "Bulevar del Norte, San Pedro Sula"
-    },
-
-    {
-        animation: 2,
-        location: { lat: 15.5458208, lng: -88.0129579 },
-        rating: 4.4,
-        title: "Koffee House",
-        types: ["cafe", "food", "point_of_interest", "establishment"],
-        vicinity: "Bulevar del Norte, San Pedro Sula"
-    },
-    {
-        animation: 2,
-        location: { lat: 15.5024036, lng: -88.0334446 },
-        rating: 4.3,
-        title: "Sigua Coffee",
-        types: ["cafe", "food", "point_of_interest", "establishment"],
-        vicinity: "6 Calle South, San Pedro Sula"
-    }
-];
 
 //When the document its load, we Init the Map
 function initMap() {
@@ -63,20 +20,8 @@ function initMap() {
         createMarker(mark);
     }
 
-    console.log(markers());
-
     //Create the InfoWindows
     infowindow = new google.maps.InfoWindow();
-
-    // //Add the event click to the button of Menu, to toggle the bar
-    // $("#menu").on("click", function() {
-    //     $(".barra").toggleClass("oculta");
-    //     $(".content").toggleClass("oculta");
-    // });
-    // //Add the event click of the button search to make the new query
-    // $("#searchPlace").on("click", function() {
-    //     searchPlaces();
-    // });
 }
 
 //Iths the callback that we going to use on our petitions to Place services
@@ -102,7 +47,7 @@ function createMarker(place) {
     });
 
     //search on FourSquare to find more information of the place
-    var request = `https://api.foursquare.com/v2/venues/search?client_id=${fourSquareClient}&client_secret=${fourSquareSecret}&near=San Pedro Sula&query=${
+    var request = `https://api.foursquare.com/v2/venues/search?client_id=${FOUR_SQUARE_CLIENT}&client_secret=${FOUR_SQUARE_SECRET}&near=San Pedro Sula&query=${
     newMark.title
   }&limit=1&v=20180225`;
 
@@ -150,7 +95,7 @@ function createInfoWindow(foursquare, marker) {
     if (foursquare) {
         var request = `https://api.foursquare.com/v2/venues/${
       foursquare.id
-    }?client_id=${fourSquareClient}&client_secret=${fourSquareSecret}&v=20180225`;
+    }?client_id=${FOUR_SQUARE_CLIENT}&client_secret=${FOUR_SQUARE_SECRET}&v=20180225`;
 
         //Search the Venue ID on FourSquare to get the rating and show it to the user
         fetch(request)
@@ -296,9 +241,21 @@ function SearchBarModel() {
     //Search the new Places with the value that the user give us
     self.searchPlaces = ko.computed(function() {
         if (!self.place()) {
+            for (const mark of markers()) {
+                mark.setVisible(true);
+            }
             return markers();
         } else {
+            ko.utils.arrayFilter(markers(), function(marker) {
+                if (marker.title.toLowerCase().indexOf(self.place().toLowerCase()) === -1) {
+                    marker.setVisible(false);
+                };
+            });
+
             return ko.utils.arrayFilter(markers(), function(marker) {
+                if (marker.title.toLowerCase().indexOf(self.place().toLowerCase()) > -1) {
+                    marker.setVisible(true);
+                };
                 return marker.title.toLowerCase().indexOf(self.place().toLowerCase()) > -1;
             });
         }

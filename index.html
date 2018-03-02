@@ -28,7 +28,7 @@
                 </div>
 
                 <div class="searchbar">
-                    <input data-bind="value: place" style="width: 100%;
+                    <input data-bind="textInput: place" style="width: 100%;
                     line-height: 25px;" placeholder="Search a Place..." />
                     <!-- <button id="searchPlace" type="button" class="btn btn-default">Search</button> -->
                 </div>
@@ -39,7 +39,6 @@
                 <div class="place">
                     <h4 data-bind="text:title, click: $parent.clickPlace"></h4>
                 </div>
-
             </div>
 
         </div>
@@ -68,6 +67,7 @@
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
+    <script src="./JS/points.js"></script>
     <script src="./JS/app.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBvZqp5_fzCjFHRwJSSNXgw7NlF5jMaA-k&callback=initMap&libraries=places" async defer onerror="alert('Error on load google Maps')"></script>
 </body>
