@@ -249,13 +249,13 @@ function SearchBarModel() {
             ko.utils.arrayFilter(markers(), function(marker) {
                 if (marker.title.toLowerCase().indexOf(self.place().toLowerCase()) === -1) {
                     marker.setVisible(false);
-                };
+                }
             });
 
             return ko.utils.arrayFilter(markers(), function(marker) {
                 if (marker.title.toLowerCase().indexOf(self.place().toLowerCase()) > -1) {
                     marker.setVisible(true);
-                };
+                }
                 return marker.title.toLowerCase().indexOf(self.place().toLowerCase()) > -1;
             });
         }
