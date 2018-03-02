@@ -176,18 +176,11 @@ function createInfoWindow(foursquare, marker) {
                         infoWindowHtml +
                         `<div class="ratings">
                                     <div class="google">
-                                        <i class="fab fa-google"></i> ${
-                                          marker.rating
-                                            ? marker.rating + "/5"
-                                            : "N/A"
+                                        <i class="fab fa-google"></i> ${ marker.rating ? marker.rating + "/5" : "N/A"
                                         }
                                     </div>
                                     <div class="foursquare">
-                                        <i class="fab fa-foursquare"></i> ${
-                                          response.response.venue.rating
-                                            ? response.response.venue.rating +
-                                              "/10"
-                                            : "N/A"
+                                        <i class="fab fa-foursquare"></i> ${response.response.venue.rating ? response.response.venue.rating +"/10": "N/A"
                                         }
                                     </div>
                                 </div>`;
