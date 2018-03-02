@@ -17,6 +17,8 @@ To use the project you have to do this steps:
 * Add the keys on `index.html` the google Key and `JS/app.js` the FourSquare Key.
 * Change the neighborhood Location on `JS/app.js` on the line 17.
 * The open the `index.html` on your browser.
+
+See the [Demo](https://jdgaletorre.github.io/NeighborhoodMap/)
  
 ## Contributing
 
